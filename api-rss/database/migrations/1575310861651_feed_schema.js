@@ -8,9 +8,8 @@ class FeedSchema extends Schema {
     this.create('feeds', (table) => {
       table.increments()
       table.string('source').notNullable()
-      table.string('title').notNullable()
+      table.string('title').notNullable().unique()
       table.string('link').notNullable()
-      table.string('description').notNullable()
       table.string('thumbnail').notNullable()
       table.date('pubDate').notNullable()
       table.timestamps()

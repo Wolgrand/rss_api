@@ -2,6 +2,7 @@
 
 const Feed = use('App/Models/Feed');
 
+
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
@@ -26,13 +27,13 @@ class FeedController {
 };
   async create ({ request, response, view }) {
 
-    var Feed = require('rss-to-json');
+    const data = request.only(["source", "title", "link", "thumbnail", "pubDate"])
 
-  Feed.load('https://pt.aleteia.org/feed/', function(err, rss){
-    console.log(rss);
-});
 
-return rss
+
+    const feed = await Feed.create(data)
+
+    return feed
 
 };
 
@@ -50,4 +51,4 @@ return rss
 
   }
 
-export default FeedController
+  module.exports = FeedController
