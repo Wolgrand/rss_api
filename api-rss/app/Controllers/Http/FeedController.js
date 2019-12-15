@@ -23,7 +23,7 @@ class FeedController {
   async index () {
   const feeds = Feed.all()
 
-  return feeds
+  return feeds.orderBy('pubDate','desc')
 };
   async create ({ request, response, view }) {
 
