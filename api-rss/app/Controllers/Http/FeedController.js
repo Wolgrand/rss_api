@@ -20,11 +20,14 @@ class FeedController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async index () {
-  const feeds = Feed.all()
+  async index ({ request }) {
+	const { page, perPage } = request.get()
+  const feeds = await Feed.query()
+	  .orderBy("pubDate", "desc")
+	  .paginate(page, perPage)
 
-  return feeds.orderBy('pubDate','desc')
-};
+  return feeds
+}
   async create ({ request, response, view }) {
 
     const data = request.only(["source", "title", "link", "thumbnail", "pubDate"])

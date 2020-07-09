@@ -6,10 +6,8 @@ Route.post('/users', 'UserController.create')
 Route.post('/sessions', 'SessionController.create')
 Route.post('/feed', 'FeedController.create')
 
-Route.get('/feed', 'FeedController.index')
+//Route.get('/feed', 'FeedController.index')
 
 
 
-Route.get('/', () => {
-  return { greeting: 'Hello world in JSON' }
-})
+Route.get('/', 'FeedController.index' )
